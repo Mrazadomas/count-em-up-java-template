@@ -11,8 +11,29 @@ class AppTest {
   // This is a sample test to show you how everything works
   // You should delete this file / test and then implement your own
   @Test
-  void appHasAGreeting() {
-    App classUnderTest = new App();
-    assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+  void tests() {
+    groceryCount counter = new groceryCount();
+    counter.ones();
+    assertEquals(counter.total(), "$1.00");
+    counter.tens();
+    assertEquals(counter.total(), "$11.00");
+    for (int i = 0; i < 4; i++) {
+        counter.hundreths();
+    }
+    assertEquals(counter.total(), "$11.04");
+    for (int i = 0; i < 11; i++) {
+        counter.tenths();
+    }
+    assertEquals(counter.total(), "$12.14");
+    for (int i = 0; i < 10; i++) {
+        counter.tens();
+    }
+    assertEquals(counter.total(), "$12.14");
+    assertEquals(counter.overflows(), 1);
+   
+    counter.clear();
+    assertEquals(counter.total(), "$0.00");
+
+    
   }
 }
